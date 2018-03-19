@@ -4,7 +4,8 @@
   "description": "Modal iframe initializer and unified bridge",
   "main": "./dist/index.js",
   "files": [
-    "dist/frame-bridge.css"
+    "dist/",
+    "src/"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
