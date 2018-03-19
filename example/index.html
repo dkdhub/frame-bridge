@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./dist/frame-bridge.css">
+    <script type="text/javascript" charset="utf-8" src="./dist/frame-bridge.min.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+<h1>This is parent</h1>
+<a onclick="toggleFrame()">Show frame</a>
+
+<script>
+    var bridge = new FrameBridge({
+        url: 'frame.html'
+    });
+
+    function toggleFrame() {
+        bridge.toggle();
+        bridge.sendMessage({
+            test: 'text',
+            world: 'hello!'
+        })
+    }
+</script>
+</body>
+</html>

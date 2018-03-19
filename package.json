@@ -1,0 +1,26 @@
+{
+  "name": "frame-bridge",
+  "version": "1.0.0",
+  "description": "Modal iframe initializer and unified bridge",
+  "main": "./dist/index.js",
+  "files": [
+    "dist/frame-bridge.css"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel": "babel --presets es2015 js/main.js -o build/main.bundle.js",
+    "start": "http-server",
+    "webpack": "webpack"
+  },
+  "author": "baranoff.vladimir@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.10"
+  }
+}
