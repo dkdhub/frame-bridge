@@ -64,7 +64,6 @@ class FrameBridge {
                     return;
                 }
                 if (!message.domain || message.domain !== this._id) {
-                    console.log("Unexpected message ", message);
                     return;
                 }
 
