@@ -8,6 +8,12 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: "frame-bridge.min.js"
     },
+    mode: 'production',
+
+    optimization: {
+        minimize: true
+    },
+
     module: {
         rules: [
             {
