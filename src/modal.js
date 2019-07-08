@@ -18,6 +18,7 @@ class FrameModalParent extends FrameBridge {
             </div>`;
         this._iframe = this._element.getElementsByTagName('iframe')[0];
         this._iframe.onload = () => {
+            this._initialized = false;
             this.bindMessagesListener(config.onMessage);
             this.init();
         };
