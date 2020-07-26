@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="./dist/frame-bridge.css">
-    <script type="text/javascript" charset="utf-8" src="./dist/frame-bridge.min.js"></script>
+    <title>Frame example</title>
+    <link rel="stylesheet" href="../dist/frame-bridge.css">
+    <script type="text/javascript" charset="utf-8" src="../dist/frame-bridge.min.js"></script>
     <style>
 
     </style>
 </head>
 <body>
 <h1>This is parent</h1>
-<a onclick="toggleFrame()">Show frame</a>
+<a href="#" onclick="toggleFrame()">Show frame</a>
 
 <script>
     var bridge = new FrameBridge({
@@ -20,7 +20,7 @@
 
     function toggleFrame() {
         bridge.toggle();
-        bridge.sendMessage({
+        bridge.send({
             test: 'text',
             world: 'hello!'
         })

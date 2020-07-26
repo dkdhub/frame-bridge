@@ -3,13 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Frame bridge client</title>
-    <link rel="stylesheet" href="frame-bridge.css">
-    <script type="text/javascript" charset="utf-8" src="./dist/frame-bridge.min.js"></script>
+    <link rel="stylesheet" href="../dist/frame-bridge.css">
+    <script type="text/javascript" charset="utf-8" src="../dist/frame-bridge.min.js"></script>
 </head>
 <body>
 <H1>This is an iframe with frame bridge client!</H1>
+<div id="messages">
+</div>
 <script>
-    var bridge = new FrameBridge();
+    const messagesContainer = document.getElementById("messages")
+    const bridge = new FrameBridge({
+        onMessage: (message) => {
+            const messageAsString = JSON.stringify(message, null, 2)
+            const msgEl = document.createElement("p")
+            msgEl.innerHTML = `<pre>${messageAsString}</pre>`
+            messagesContainer.append(msgEl)
+        }
+    });
 </script>
 </body>
 </html>
