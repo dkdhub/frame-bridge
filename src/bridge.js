@@ -1,11 +1,12 @@
 import {uniqId} from './utils';
 import RPCQueue from './rpc-queue';
 import {
+    INIT_SUCCESS,
     MSG_TYPE_INIT, MSG_TYPE_INIT_REPLY,
     MSG_TYPE_MESSAGE,
     MSG_TYPE_RPC_CALL,
     MSG_TYPE_RPC_REPLY, MSG_TYPES
-} from "./constants";
+} from './constants';
 
 class FrameBridge {
     constructor(config) {
@@ -56,10 +57,7 @@ class FrameBridge {
                     this.sendMessage({
                         type: MSG_TYPE_INIT_REPLY,
                         replyFor: message.id,
-                        payload: {
-                            success: true
-                        }
-
+                        payload: INIT_SUCCESS
                     });
                     return;
                 }
