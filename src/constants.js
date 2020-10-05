@@ -5,6 +5,7 @@ export const MSG_TYPE_RPC_REPLY = 'RPC_CALL_REPLY';
 export const MSG_TYPE_MESSAGE = 'MESSAGE';
 
 export const INIT_SUCCESS = 'INIT_SUCCESS';
+export const INIT_SUCCESS_PASSIVE = 'PASSIVE_INIT_SUCCESS'
 
 export const MSG_TYPES = [
     MSG_TYPE_INIT,

@@ -1,7 +1,7 @@
 import {uniqId} from './utils';
 import RPCQueue from './rpc-queue';
 import {
-    INIT_SUCCESS,
+    INIT_SUCCESS, INIT_SUCCESS_PASSIVE,
     MSG_TYPE_INIT, MSG_TYPE_INIT_REPLY,
     MSG_TYPE_MESSAGE,
     MSG_TYPE_RPC_CALL,
@@ -57,8 +57,9 @@ class FrameBridge {
                     this.sendMessage({
                         type: MSG_TYPE_INIT_REPLY,
                         replyFor: message.id,
-                        payload: INIT_SUCCESS
+                        payload: {type: INIT_SUCCESS}
                     });
+                    callback({type: INIT_SUCCESS_PASSIVE, connection_id: this._id})
                     return;
                 }
                 if (!message.domain || message.domain !== this._id) {
