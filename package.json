@@ -1,6 +1,6 @@
 {
   "name": "frame-bridge",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Modal iframe initializer and unified bridge",
   "main": "./dist/index.js",
   "repository": "https://github.com/dkdhub/frame-bridge.git",
