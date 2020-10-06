@@ -26,7 +26,9 @@ class FrameBridgeClient extends FrameBridge {
             console.log("init response", reply)
             this._initialized = true;
         }).catch(e => {
-            console.log("unable to initialize iframe bridge from client: ", e)
+            if (!this._initialized) {
+                console.log("unable to initialize iframe bridge from client: ", e)
+            }
         });
     }
 

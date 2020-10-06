@@ -17,15 +17,15 @@ class FrameBridge {
 
 
     _sendMessage(payload) {
-        console.warn("send message not implemented!")
+        console.warn('send message not implemented!')
     }
 
     getEventElement() {
-        console.warn("get event element not implemented");
+        console.warn('get event element not implemented');
     }
 
     init() {
-        console.error("init not implemented");
+        console.error('init not implemented');
     };
 
     sendMessage(message = {}, options) {
@@ -35,11 +35,10 @@ class FrameBridge {
         if (message.waitForResponse) {
             return this._rpcQueue.add(id, message, options);
         }
-
     };
 
     rpc(payload, options) {
-        return this.sendMessage({payload, type: MSG_TYPE_RPC_CALL}, options);
+        return this.sendMessage({payload, type: MSG_TYPE_RPC_CALL, waitForResponse: true}, options);
     };
 
     send(payload, options) {
@@ -57,9 +56,9 @@ class FrameBridge {
                     this.sendMessage({
                         type: MSG_TYPE_INIT_REPLY,
                         replyFor: message.id,
-                        payload: {type: INIT_SUCCESS}
+                        payload: {type: INIT_SUCCESS, passive: false, connection_id: this._id}
                     });
-                    callback({type: INIT_SUCCESS_PASSIVE, connection_id: this._id})
+                    callback({type: INIT_SUCCESS, passive: true, connection_id: this._id})
                     return;
                 }
                 if (!message.domain || message.domain !== this._id) {
@@ -68,16 +67,22 @@ class FrameBridge {
 
                 if (message.replyFor) {
                     this._rpcQueue.taskDone(message.replyFor, message.payload, true);
+                    if (message.type === MSG_TYPE_RPC_REPLY) {
+                        return;
+                    }
                 }
 
-                let response = callback(message.payload);
-                if (message.waitForResponse) {
-                    this.sendMessage({
-                        type: MSG_TYPE_RPC_REPLY,
-                        replyFor: message.id,
-                        payload: response
-                    });
-                }
+                Promise.resolve(callback(message.payload))
+                    .catch(e => e)
+                    .then(response => {
+                        if (message.waitForResponse) {
+                            this.sendMessage({
+                                type: MSG_TYPE_RPC_REPLY,
+                                replyFor: message.id,
+                                payload: response
+                            });
+                        }
+                    })
             };
         }
         element.addEventListener('message', this._eventsListener);
