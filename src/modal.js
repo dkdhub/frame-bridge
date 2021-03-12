@@ -30,6 +30,9 @@ class FrameModalParent extends FrameBridge {
             this._element = config.mountPoint.appendChild(this._element);
         }
         this._element.onclick = () => {
+            if (config.preventCloseOnOutsideClick){
+                return;
+            }
             this.toggle(false);
         };
     }
